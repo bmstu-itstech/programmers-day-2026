@@ -5,7 +5,7 @@ import { ERROR_MESSAGES } from './consts';
 const NAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TELEGRAM_REGEX = /^@[a-zA-Z0-9_]{4,31}$/;
-const STUDY_GROUP_REGEX = /^[а-яА-ЯёЁa-zA-Z0-9]{1,10}-\d{1,4}[а-яА-ЯёЁa-zA-Z]?$/;
+const STUDY_GROUP_REGEX = /^((((ФМОП-)?(ИУ|ИБМ|МТ|СМ|БМТ|РЛ|Э|РК|ФН|Л|СГН|РКТ|АК|ПС|РТ|ЛТ|К|ЮР)(К)?[1-9]\d?)|(ЮР(\.ДК)?))(К)?[ИЦ]?-(((1[0-2])|(\d))((\d)|(.\d\d+))([АМБ]?(В)?)))$/;
 const PASSPORT_REGEX = /^\d{4}\s?\d{6}$/;
 const PHONE_REGEX = /^(\+7|8)\d{10}$/;
 
