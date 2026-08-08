@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 120px;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+    padding: 24px 16px;
+  }
+}

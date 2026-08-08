@@ -1,0 +1,56 @@
+.button {
+  max-width: 541px;
+  width: 100%;
+  padding: 20px 24px;
+  background: linear-gradient(to bottom right, #00CAF1, #9D28FF);
+  border-radius: 20px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: linear-gradient(to bottom right, #00CAF1, #9D28FF);
+}
+
+.secondary {
+  background: transparent;
+  border: 2px solid #2A2A2A;
+}
+
+.md {
+  padding: 14px 20px;
+  font-size: 18px;
+}
+
+.lg {
+  padding: 20px 24px;
+  font-size: 24px;
+}
+
+.fullWidth {
+  width: 100%;
+}

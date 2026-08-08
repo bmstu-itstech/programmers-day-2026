@@ -1,0 +1,21 @@
+.shell {
+  max-width: 541px;
+  width: 100%;
+  padding: 20px 24px;
+  background: linear-gradient(to top right, rgba(20, 20, 20, 0.55) 0%, rgba(0, 0, 0, 0.55) 60%);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.shell:focus-within {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.hasError {
+  background: linear-gradient(0deg, rgba(255, 77, 77, 0.15), rgba(255, 77, 77, 0.15)), linear-gradient(to top right, rgba(20, 20, 20, 0.55) 0%, rgba(0, 0, 0, 0.55) 60%);
+  border-color: #FF4D4D;
+}

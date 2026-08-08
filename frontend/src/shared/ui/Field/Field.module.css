@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 541px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.labelText {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.hasError .labelText {
+  color: #FF4D4D;
+}
+
+.errorText {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FF4D4D;
+  margin-top: -4px;
+}
+
+@media (max-width: 1024px) {
+  .labelText {
+    font-size: 18px;
+  }
+}

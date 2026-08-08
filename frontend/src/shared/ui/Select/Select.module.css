@@ -1,0 +1,124 @@
+.container {
+  position: relative;
+  max-width: 541px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.trigger {
+  width: 100%;
+  padding: 20px 24px;
+  background: linear-gradient(to top right, rgba(20, 20, 20, 0.55) 0%, rgba(0, 0, 0, 0.55) 60%);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #FFFFFF;
+  outline: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease;
+}
+
+.trigger:focus,
+.trigger.isOpen {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.text {
+  color: #FFFFFF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text.isPlaceholder {
+  color: #B4B4B4;
+}
+
+.arrow {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  transition: transform 0.2s ease;
+}
+
+.trigger.isOpen .arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(16, 16, 16, 0.75);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  z-index: 50;
+  overflow: hidden;
+  padding: 8px 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.option {
+  padding: 16px 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #B4B4B4;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.option:hover {
+  background-color: #222222;
+  color: #FFFFFF;
+}
+
+.option.isSelected {
+  color: #FFFFFF;
+  background-color: #1A1A1A;
+}
+
+/* Error state */
+.trigger.hasError {
+  background: linear-gradient(0deg, rgba(255, 77, 77, 0.15), rgba(255, 77, 77, 0.15)), linear-gradient(to top right, rgba(20, 20, 20, 0.55) 0%, rgba(0, 0, 0, 0.55) 60%);
+  border-color: #FF4D4D;
+}
+
+.trigger.hasError .text,
+.trigger.hasError .text.isPlaceholder {
+  color: #FF4D4D;
+}
+
+.trigger.hasError:focus,
+.trigger.hasError.isOpen {
+  border-color: #FF6666;
+}
+
+@media (max-width: 1024px) {
+  .trigger {
+    font-size: 16px;
+  }
+
+  .option {
+    font-size: 16px;
+  }
+}
