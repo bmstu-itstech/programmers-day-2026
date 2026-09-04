@@ -10,6 +10,8 @@ RUN yarn install --frozen-lockfile
 
 COPY --chown=node:node . .
 
+RUN yarn build
+
 FROM node:24-alpine
 
 ENV NODE_ENV=production
