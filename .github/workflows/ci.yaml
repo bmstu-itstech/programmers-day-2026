@@ -36,4 +36,6 @@ jobs:
             git pull origin main
             docker compose -f docker-compose.ci.yaml run --rm migrate
             docker compose -f docker-compose.ci.yaml up --build -d http
+            docker create --name pd-front pd-front nop
+            docker cp pd-front:/dist ${{ vars.DIST_DIR }}
             docker system prune -f
