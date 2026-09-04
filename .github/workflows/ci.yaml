@@ -1,0 +1,40 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: production
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          EXTERNAL_HTTP_PORT: ${{ vars.EXTERNAL_HTTP_PORT }}
+          DB_HOST: ${{ vars.DB_HOST }}
+          DB_PORT: ${{ vars.DB_PORT }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_DATABASE: ${{ secrets.DB_DATABASE }}
+        with:
+          host: ${{ vars.SSH_HOST }}
+          port: ${{ vars.SSH_PORT }}
+          username: ${{ vars.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script_stop: true
+          envs: EXTERNAL_HTTP_PORT,DB_HOST,DB_PORT,DB_USERNAME,DB_PASSWORD,DB_DATABASE
+          script: |
+            cd ${{ vars.PROJECT_DIR }}
+            git stash
+            git checkout main
+            git pull origin main
+            docker compose -f docker-compose.ci.yaml run --rm migrate
+            docker compose -f docker-compose.ci.yaml up --build -d http
+            docker system prune -f
