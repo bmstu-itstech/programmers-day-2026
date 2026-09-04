@@ -5,7 +5,7 @@ import { validateDTO } from '@/shared/api/validateDTO';
 import { registrationResponseSchema } from '../schemas';
 import type { RegistrationRequest, RegistrationResponse } from '../types';
 
-const REGISTRATION_ENDPOINT = '/submit';
+const REGISTRATION_ENDPOINT = '/forms';
 
 function mapErrorToMessage(status?: number): string {
   if (status === undefined) {

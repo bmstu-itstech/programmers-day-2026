@@ -7,12 +7,14 @@ import { Form } from "./forms/models/form.model.js";
   imports: [
     SequelizeModule.forRoot({
       database: "progday",
-      dialect: "sqlite",
+      dialect: "postgres",
       username: "progday",
       password: "s3cr3tpw",
-      storage: ":memory:",
+      host: "localhost",
+      port: 5432,
       models: [Form],
       synchronize: true,
+      autoLoadModels: true,
     }),
     FormsModule,
   ],
