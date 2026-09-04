@@ -10,6 +10,7 @@ import {
   registrationRequestSchema,
 } from '@/entities/registration';
 import { registrationApi } from '@/entities/registration/api/registrationApi';
+import { getUtmSource } from '@/shared/lib/utm';
 
 type FormStatus = 'idle' | 'submitting' | 'error';
 
@@ -110,7 +111,10 @@ export class RegistrationStore {
     this.status = 'submitting';
 
     try {
-      const payload = registrationRequestSchema.parse(this.formData);
+      const payload = registrationRequestSchema.parse({
+        ...this.formData,
+        source: getUtmSource(),
+      });
       await registrationApi.submitRegistration(payload);
 
       runInAction(() => {

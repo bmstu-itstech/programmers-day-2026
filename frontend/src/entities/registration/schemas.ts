@@ -78,8 +78,9 @@ export const registrationFormSchema = z
     }
   });
 
-export const registrationRequestSchema = registrationFormSchema.transform(
-  (data) => ({
+export const registrationRequestSchema = registrationFormSchema
+  .extend({ source: z.string().nullable() })
+  .transform((data) => ({
     full_name: data.fullName.trim(),
     is_bmstu_student: !data.isNotBmstuStudent,
     university_name: data.isNotBmstuStudent ? data.universityName.trim() : null,
@@ -90,8 +91,8 @@ export const registrationRequestSchema = registrationFormSchema.transform(
     telegram: data.telegram.trim(),
     activities: data.activities,
     agree_data_processing: data.agreeToDataProcessing,
-  }),
-);
+    source: data.source,
+  }));
 
 export const registrationResponseSchema = z.object({
   id: z.string(),
