@@ -8,7 +8,6 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-RUN echo "API_URL=${API_URL}" > .env.production
 RUN npm run build
 
 FROM scratch AS export
