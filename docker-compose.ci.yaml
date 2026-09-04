@@ -1,0 +1,22 @@
+services:
+  http:
+    build: .
+    environment:
+      DB_HOST: $DB_HOST
+      DB_PORT: $DB_PORT
+      DB_USERNAME: $DB_USERNAME
+      DB_PASSWORD: $DB_PASSWORD
+      DB_DATABASE: $DB_DATABASE
+    ports:
+      - "${EXTERNAL_HTTP_PORT:-8000}:8000"
+    restart: unless-stopped
+
+  migrate:
+    image: migrate/migrate
+    command: [
+      "-path", "/migrations",
+      "-database", "postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}",
+      "up"
+    ]
+    volumes:
+      - ./migrations:/migrations:ro
