@@ -5,7 +5,7 @@ import { ERROR_MESSAGES } from './consts';
 const NAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TELEGRAM_REGEX = /^@[a-zA-Z0-9_]{4,31}$/;
-const STUDY_GROUP_REGEX = /^[а-яА-ЯёЁa-zA-Z0-9]{1,10}-\d{1,4}[а-яА-ЯёЁa-zA-Z]?$/;
+const STUDY_GROUP_REGEX = /^((((ФМОП-)?(ИУ|ИБМ|МТ|СМ|БМТ|РЛ|Э|РК|ФН|Л|СГН|РКТ|АК|ПС|РТ|ЛТ|К|ЮР)(К)?[1-9]\d?)|(ЮР(\.ДК)?))(К)?[ИЦ]?-(((1[0-2])|(\d))((\d)|(.\d\d+))([АМБ]?(В)?)))$/;
 const PASSPORT_REGEX = /^\d{4}\s?\d{6}$/;
 const PHONE_REGEX = /^(\+7|8)\d{10}$/;
 
@@ -78,8 +78,9 @@ export const registrationFormSchema = z
     }
   });
 
-export const registrationRequestSchema = registrationFormSchema.transform(
-  (data) => ({
+export const registrationRequestSchema = registrationFormSchema
+  .extend({ source: z.string().nullable() })
+  .transform((data) => ({
     full_name: data.fullName.trim(),
     is_bmstu_student: !data.isNotBmstuStudent,
     university_name: data.isNotBmstuStudent ? data.universityName.trim() : null,
@@ -90,8 +91,8 @@ export const registrationRequestSchema = registrationFormSchema.transform(
     telegram: data.telegram.trim(),
     activities: data.activities,
     agree_data_processing: data.agreeToDataProcessing,
-  }),
-);
+    source: data.source,
+  }));
 
 export const registrationResponseSchema = z.object({
   id: z.string(),
